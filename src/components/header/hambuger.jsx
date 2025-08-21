@@ -5,7 +5,7 @@ import React from 'react';
 const Hambuger = () => {
   return (
     <button
-      className="ml-16 relative flex h-7 w-7 flex-col items-center justify-center text-white focus:outline-none"
+      className="relative flex h-7 w-7 flex-col items-center justify-center text-white focus:outline-none"
       aria-label="Menu"
     >
       {/* Top line */}
