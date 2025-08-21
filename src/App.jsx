@@ -19,7 +19,7 @@ function App() {
     <>
       <Sidebar collapsed={!isSidebarOpen} toggleCollapsed={toggleSidebar} />
       <Header onToggleSidebar={toggleSidebar} />
-      <div className='ml-16'>
+      <div className='ml-16 max-sm:ml-0'>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />

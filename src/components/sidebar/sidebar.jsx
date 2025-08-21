@@ -48,21 +48,23 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
 
           <div className="flex flex-col gap-4">
 
-            <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
-              <House className="w-5 h-5 "/>
-            </div>
+            <a href="/">
+              <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
+                <House className="w-5 h-5 "/>
+              </div>
+            </a>
 
-             <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
-              <Gift className="w-5 h-5 " />
-            </div> 
+            <a href="/jobs">
+              <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
+                <Gift className="w-5 h-5 " />
+              </div> 
+            </a> 
 
-            <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
-              <Grid2x2 className="w-5 h-5 "  />
-            </div> 
-
-            <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
-              <SquareMenu className="w-5 h-5 " />
-            </div> 
+            <a href="/dashboard">
+              <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
+                <SquareMenu className="w-5 h-5 " />
+              </div>
+            </a>
 
           </div>
         </div>

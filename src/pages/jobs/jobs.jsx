@@ -97,30 +97,30 @@ export default function Jobs() {
     <div className="p-6 space-y-6 min-h-screen bg-black">
       <div>
         <h1 className="text-3xl font-bold text-gray-100 mb-2">
-          <span className="text-[#FFD700]">AI-Powered</span> Job Matching
+          <span className="text-gray-300">AI-Powered</span> Job Matching
         </h1>
         <p className="text-gray-400">Discover opportunities tailored to your skills and career goals</p>
       </div>
 
       {/* Search and Filter */}
-      <div className="bg-[#111] rounded-xl p-6 shadow-2xl border border-[#FFD700]/30">
+      <div className="bg-[#111] rounded-xl p-6 shadow-2xl border border-gray-800">
         <div className="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#FFD700] w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search jobs, companies, or skills..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-black border border-[#FFD700]/30 rounded-lg focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] text-gray-100 placeholder-gray-500"
+              className="w-full pl-10 pr-4 py-3 bg-black border border-gray-800 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-gray-100 placeholder-gray-500"
             />
           </div>
           <div className="flex items-center space-x-2">
-            <Filter className="w-5 h-5 text-[#FFD700]" />
+            <Filter className="w-5 h-5 text-gray-400" />
             <select
               value={selectedFilter}
               onChange={(e) => setSelectedFilter(e.target.value)}
-              className="px-4 py-3 bg-black border border-[#FFD700]/30 rounded-lg focus:ring-2 focus:ring-[#FFD700] focus:border-[#FFD700] text-gray-100"
+              className="px-4 py-3 bg-black border border-gray-800 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 text-gray-100"
             >
               {filters.map(filter => (
                 <option key={filter.id} value={filter.id} className="bg-black">
@@ -133,23 +133,23 @@ export default function Jobs() {
       </div>
 
       {/* AI Insights */}
-      <div className="bg-gradient-to-r from-[#FFD700]/10 to-black rounded-xl p-6 border border-[#FFD700]/30">
+      <div className="bg-gradient-to-r from-gray-900/40 to-black rounded-xl p-6 border border-gray-800">
         <div className="flex items-center space-x-2 mb-3">
-          <Crown className="w-5 h-5 text-[#FFD700]" />
+          <Crown className="w-5 h-5 text-gray-400" />
           <h2 className="text-lg font-semibold text-gray-100">AI Market Insights</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="bg-black p-4 rounded-lg border border-[#FFD700]/20">
+          <div className="bg-black p-4 rounded-lg border border-gray-800">
             <p className="text-gray-400">Trending Skills</p>
-            <p className="font-semibold text-[#FFD700]">React, Python, AWS</p>
+            <p className="font-semibold text-gray-200">React, Python, AWS</p>
           </div>
-          <div className="bg-black p-4 rounded-lg border border-[#FFD700]/20">
+          <div className="bg-black p-4 rounded-lg border border-gray-800">
             <p className="text-gray-400">Salary Trends</p>
-            <p className="font-semibold text-[#FFD700]">↗️ 15% increase this quarter</p>
+            <p className="font-semibold text-gray-200">↗️ 15% increase this quarter</p>
           </div>
-          <div className="bg-black p-4 rounded-lg border border-[#FFD700]/20">
+          <div className="bg-black p-4 rounded-lg border border-gray-800">
             <p className="text-gray-400">Match Quality</p>
-            <p className="font-semibold text-[#FFD700]">87% average match score</p>
+            <p className="font-semibold text-gray-200">87% average match score</p>
           </div>
         </div>
       </div>
@@ -161,18 +161,18 @@ export default function Jobs() {
         {filteredJobs.map((job) => (
           <div
             key={job.id}
-            className="bg-[#111] rounded-xl p-6 shadow-2xl border border-[#FFD700]/20 hover:border-[#FFD700]/50 hover:shadow-lg hover:shadow-[#FFD700]/30 transition-all duration-300 cursor-pointer"
+            className="bg-[#111] rounded-xl p-6 shadow-2xl border border-gray-800 hover:border-gray-600 hover:shadow-lg transition-all duration-300 cursor-pointer"
           >
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between space-y-4 lg:space-y-0">
               <div className="flex-1 space-y-4">
                 <div className="flex items-start space-x-4">
-                  <div className="w-16 h-16 bg-[#FFD700] rounded-xl flex items-center justify-center text-2xl shadow-lg text-black">
+                  <div className="w-16 h-16 bg-gray-800 rounded-xl flex items-center justify-center text-2xl shadow-lg text-gray-200">
                     {job.logo}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">
                       <h3 className="text-xl font-semibold text-gray-100">{job.title}</h3>
-                      <div className="flex items-center bg-[#FFD700] text-black px-2 py-1 rounded-full text-xs font-bold shadow-sm">
+                      <div className="flex items-center bg-gray-800 text-gray-200 px-2 py-1 rounded-full text-xs font-bold shadow-sm">
                         <Star className="w-3 h-3 mr-1 fill-current" />
                         {job.match}% match
                       </div>
@@ -201,7 +201,7 @@ export default function Jobs() {
                   {job.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="bg-[#FFD700]/10 text-[#FFD700] border border-[#FFD700]/30 px-3 py-1 rounded-full text-sm font-medium"
+                      className="bg-gray-800 text-gray-300 border border-gray-700 px-3 py-1 rounded-full text-sm font-medium"
                     >
                       {skill}
                     </span>
@@ -210,16 +210,16 @@ export default function Jobs() {
               </div>
 
               <div className="lg:text-right space-y-3">
-                <p className="text-2xl font-bold text-[#FFD700]">{job.salary}</p>
-                <div className="space-y-2">
-                  <button className="w-full lg:w-auto bg-[#FFD700] text-black px-6 py-2 rounded-lg hover:shadow-lg hover:shadow-[#FFD700]/50 transition-all duration-300 font-bold">
+                <p className="text-2xl font-bold text-gray-200">{job.salary}</p>
+                <div className="space-x-2">
+                  <button className="w-full lg:w-auto bg-gray-200 text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition-all duration-300 font-bold">
                     Apply Now
                   </button>
-                  <button className="w-full lg:w-auto border border-[#FFD700]/30 text-gray-300 px-6 py-2 rounded-lg hover:bg-[#222] hover:text-[#FFD700] transition-all duration-300 font-medium">
+                  <button className="w-full lg:w-auto border border-gray-700 text-gray-300 px-6 py-2 rounded-lg hover:bg-[#222] hover:text-white transition-all duration-300 font-medium">
                     Save Job
                   </button>
                 </div>
-                <button className="flex items-center text-[#FFD700] hover:text-yellow-300 text-sm font-medium transition-colors duration-300">
+                <button className="flex items-center text-gray-400 hover:text-white text-sm font-medium transition-colors duration-300">
                   <Zap className="w-4 h-4 mr-1" />
                   Skill Gap Analysis
                 </button>
