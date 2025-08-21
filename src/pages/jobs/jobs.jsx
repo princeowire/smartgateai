@@ -211,7 +211,7 @@ export default function Jobs() {
 
               <div className="lg:text-right space-y-3">
                 <p className="text-2xl font-bold text-gray-200">{job.salary}</p>
-                <div className="space-x-2">
+                <div className="space-x-2 space-y-2">
                   <button className="w-full lg:w-auto bg-gray-200 text-black px-6 py-2 rounded-lg hover:bg-gray-300 transition-all duration-300 font-bold">
                     Apply Now
                   </button>

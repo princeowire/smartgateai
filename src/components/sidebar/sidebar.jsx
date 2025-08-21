@@ -93,8 +93,9 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
           <nav className="space-y-1 px-3">
             {menuItems.map((item, index) => {
               const isActive = item.label === activeItem;
-              return (
-                <button
+              return ( 
+                <a
+                  href={item.label}
                   key={index}
                   onClick={() => setActiveItem(item.label)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-left ${
@@ -103,7 +104,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
                 >
                   <span className="text-sm truncate">{item.label}</span>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
-                </button>
+                </a>
               );
             })}
           </nav>
