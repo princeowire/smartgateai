@@ -11,6 +11,7 @@ import {
   User,
   LucideSettings,
 } from "lucide-react";
+import logo from "/assets/smartgatelogo.png"
 
 export default function Sidebar({ collapsed, toggleCollapsed }) {
   const [activeItem, setActiveItem] = useState("Sales");
@@ -43,7 +44,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
       
         <div className="flex flex-col items-center gap-6 mt-6 text-gray-400"> 
 
-          <div className="text-3xl mb-4">L</div>
+          <div className="text-xl mb-4">SG</div>
 
           <div className="flex flex-col gap-4">
 
@@ -89,7 +90,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
         {/* Header */}
         <div className="p-4 flex items-center justify-between border-b border-[#1C1D20]">
           <div className="flex items-center space-x-2">
-            <span className="font-semibold text-white">Dashboards</span>
+            <span className="font-semibold text-white"><img src={logo} alt="" /></span>
           </div>
           <button
             onClick={toggleCollapsed}
