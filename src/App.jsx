@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard/dashboard';
 import Jobs from "./pages/jobs/jobs"
 import Sidebar from './components/sidebar/sidebar';
 import Header from './components/header/header';
-import ResumeReview from './pages/Resumereview/resumereview';
+import ResumeReview from './pages/resume/resumereview';
 import Home from './pages/Home/Home';
 import HireTalent from './pages/Hiretalent/hiretalent';
 import LoginPage from './pages/Login/login';
