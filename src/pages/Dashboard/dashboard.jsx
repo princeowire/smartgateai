@@ -1,5 +1,6 @@
 import React from 'react';
 import { TrendingUp, Users, BookOpen, Target, ArrowUpRight, Star, Clock, MapPin, Briefcase, Crown, Zap } from 'lucide-react';
+import Analytics from '../../components/analitics/analiitic';
 
 export default function Dashboard() {
   const stats = [
@@ -159,6 +160,8 @@ export default function Dashboard() {
           </button>
         </div>
       </div>
+
+      <Analytics />
     </div>
   );
 }

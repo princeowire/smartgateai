@@ -1,5 +1,6 @@
 import React from "react";
 import { Users, Briefcase, Search, Workflow } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const DashboardSection = () => {
   return (
@@ -11,33 +12,33 @@ const DashboardSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Card */}
-          <div className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition">
+          <Link to="./hire-talent" className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition hover:ring-1 ring-blue-500" >
             <Users className="w-6 h-6 mb-3 text-blue-400" />
             <h3 className="font-semibold">Hire Talents</h3>
             <p className="text-sm text-gray-400">Find and hire the right people.</p>
-          </div>
+          </Link>
 
-          <div className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition ring-1 ring-blue-500">
+          <Link to="./post-job" className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition hover:ring-1 ring-blue-500">
             <Briefcase className="w-6 h-6 mb-3 text-green-400" />
             <h3 className="font-semibold">Post a Job</h3>
             <p className="text-sm text-gray-400">
               Post a new job opening and reach qualified candidates.
             </p>
-          </div>
+          </Link>
 
-          <div className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition">
+          <Link to="./browse-talent" className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition hover:ring-1 ring-blue-500">
             <Search className="w-6 h-6 mb-3 text-purple-400" />
             <h3 className="font-semibold">Browse Talent</h3>
             <p className="text-sm text-gray-400">Explore available candidates.</p>
-          </div>
+          </Link>
 
-          <div className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition">
+          <Link to="./manage-hire" className="rounded-xl border border-gray-700 p-6 bg-[#1a1a1a] hover:bg-[#222] transition hover:ring-1 ring-blue-500">
             <Workflow className="w-6 h-6 mb-3 text-orange-400" />
             <h3 className="font-semibold">Manage Hires</h3>
             <p className="text-sm text-gray-400">Track and manage hired people.</p>
-          </div>
+          </Link>
         </div>
-        
+
       </div>
 
 

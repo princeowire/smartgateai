@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -19,11 +20,13 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
   const [activeItem, setActiveItem] = useState("Dashboard");
 
   const menuItems = [
-    { label: "Dashboard" },
-    { label: "AI Review" },
-    { label: "Jobs" },
-    { label: "Feedback" },
-    { label: "Messages" },
+    { label: "Dashboard", link: 'dashboard' },
+    { label: "AI Review", link: 'ai-review' },
+    { label: "Jobs", link: 'jobs' },
+    { label: "Feedback", link: 'feedback' },
+    { label: "Messages", link: 'messages' },
+    { label: "Settings", link: 'settings' },
+    { label: "profile", link: 'profile' },
   ];
 
   return (
@@ -34,23 +37,23 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
           <div className="text-xl mb-4">SG</div>
 
           <div className="flex flex-col gap-4">
-            <a href="/">
+            <Link to="./">
               <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
                 <House className="w-5 h-5 " />
               </div>
-            </a>
+            </Link>
 
-            <a href="/jobs">
+            <Link to="./jobs">
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <Gift className="w-5 h-5 " />
               </div>
-            </a>
+            </Link>
 
-            <a href="/dashboard">
+            <Link to="./dashboard">
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <SquareMenu className="w-5 h-5 " />
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -95,7 +98,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
               const isActive = item.label === activeItem;
               return ( 
                 <a
-                  href={item.label}
+                  href={item.link}
                   key={index}
                   onClick={() => setActiveItem(item.label)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-left ${
