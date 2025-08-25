@@ -98,7 +98,7 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
               const isActive = item.label === activeItem;
               return ( 
                 <a
-                  href={item.link}
+                  href={`./${item.link}`}
                   key={index}
                   onClick={() => setActiveItem(item.label)}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-left ${
