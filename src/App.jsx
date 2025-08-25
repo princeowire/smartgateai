@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Routes, Route, } from "react-router-dom";
 import './App.css'
 import Dashboard from './pages/Dashboard/dashboard';
-import Jobs from "./pages/Jobs/jobs"
+import Jobs from "./pages/host/jobs"
 import Sidebar from './components/sidebar/sidebar';
 import Header from './components/header/header';
 import ResumeReview from './pages/Resumereview/resumereview';
