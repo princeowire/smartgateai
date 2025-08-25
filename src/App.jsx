@@ -8,6 +8,7 @@ import Header from './components/header/header';
 import ResumeReview from './pages/Resumereview/resumereview';
 import Home from './pages/Home/Home';
 import HireTalent from './pages/Hiretalent/hiretalent';
+import LoginPage from './pages/Login/login';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/ai-review" element={<ResumeReview />} />
         <Route path="/hire-talent" element={<HireTalent />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
       </div>
     </>
