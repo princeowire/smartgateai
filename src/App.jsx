@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import Dashboard from './pages/Dashboard/dashboard';
 import Jobs from "./pages/jobs/jobs"
@@ -17,12 +17,15 @@ function App() {
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
   };
+
+  const location = useLocation();
+  const hideLayout = ["/login", "/signup"].includes(location.pathname);
   
   return (
     <>
-      <Sidebar collapsed={!isSidebarOpen} toggleCollapsed={toggleSidebar} />
-      <Header onToggleSidebar={toggleSidebar} />
-      <div className='ml-16 max-sm:ml-0'>
+      {!hideLayout && <Sidebar collapsed={!isSidebarOpen} toggleCollapsed={toggleSidebar} />}
+      {!hideLayout && <Header onToggleSidebar={toggleSidebar} />}
+      <div   className={`${hideLayout ? "ml-0" : "ml-16 max-sm:ml-0"}`} >
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<Home />} />

@@ -21,22 +21,31 @@ export default function Signup() {
 
         {/* Right Side Form */}
 
-        {isEmployer ?  <EmployersForm employerSave={!isEmployer} setemployerSave={setIsEmployer} /> : <TalentForm employerSave={!isEmployer} setemployerSave={setIsEmployer} /> } 
+        {isEmployer ? <EmployersForm employerSave={!isEmployer} setemployerSave={setIsEmployer} /> : <TalentForm employerSave={!isEmployer} setemployerSave={setIsEmployer} />}
 
       </div>
 
       {/* Toggle Between User & Employer */}
-      <div onClick={() => setIsEmployer(!isEmployer)} className="mt-8 text-sm w-[250px] bg-amber-300 h-10 rounded-full relative flex justify-center items-center p-1">
+      <div
+        onClick={() => setIsEmployer(!isEmployer)}
+        className="mt-8 w-[250px] h-10 bg-amber-300 rounded-full relative flex items-center cursor-pointer select-none p-1"
+      >
+        {/* Sliding knob */}
         <button
-          className={`text-yellow-400 p-2 font-semibold text-sm bg-gray-800 w-[125px] h-9 rounded-full absolute ${isEmployer ? "left-[2px]" : "right-[2px]"}`}
+          type="button"
+          className={`absolute top-1 left-1 h-8 w-[calc(50%-4px)] rounded-full bg-gray-800 text-yellow-400 font-semibold text-sm
+                flex items-center justify-center
+                transition-transform duration-500 ease-in-out
+                ${isEmployer ? 'translate-x-0' : 'translate-x-[100%]'}`}
         >
-          {isEmployer ? "Employer" : "User"}
+          {isEmployer ? 'Employer' : 'User'}
         </button>
 
-        <div className="flex gap-4 justify-between w-full text-[#0b0d13] font-semibold">
-          <p className="pl-10">Employer</p><p className="pr-10 ">User</p>
+        {/* Track labels */}
+        <div className="flex justify-between w-full px-4 text-[#0b0d13] font-semibold text-sm pointer-events-none">
+          <span>Employer</span>
+          <span>User</span>
         </div>
-
       </div>
 
     </div>
