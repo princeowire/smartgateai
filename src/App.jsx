@@ -23,7 +23,7 @@ function App() {
   
   return (
     <>
-      {!hideLayout && <Sidebar collapsed={!isSidebarOpen} toggleCollapsed={toggleSidebar} />}
+      {!hideLayout && <Sidebar collapsed={!isSidebarOpen} toggleCollapsed={toggleSidebar} setCollapsed={setSidebarOpen} />}
       {!hideLayout && <Header onToggleSidebar={toggleSidebar} />}
       <div   className={`${hideLayout ? "ml-0" : "ml-16 max-sm:ml-0"}`} >
       <Routes>

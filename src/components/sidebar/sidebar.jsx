@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -10,23 +8,20 @@ import {
   House,
   User,
   LucideSettings,
-  MessageSquare,
-  Brain,
-  ClipboardList,
 } from "lucide-react";
 import logo from "/assets/smartgatelogo.png";
 
-export default function Sidebar({ collapsed, toggleCollapsed }) {
+export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
   const [activeItem, setActiveItem] = useState("Dashboard");
 
   const menuItems = [
-    { label: "Dashboard", link: 'dashboard' },
-    { label: "AI Review", link: 'ai-review' },
-    { label: "Jobs", link: 'jobs' },
-    { label: "Feedback", link: 'feedback' },
-    { label: "Messages", link: 'messages' },
-    { label: "Settings", link: 'settings' },
-    { label: "profile", link: 'profile' },
+    { label: "Dashboard", link: "dashboard" },
+    { label: "AI Review", link: "ai-review" },
+    { label: "Jobs", link: "jobs" },
+    { label: "Feedback", link: "feedback" },
+    { label: "Messages", link: "messages" },
+    { label: "Settings", link: "settings" },
+    { label: "Profile", link: "profile" },
   ];
 
   return (
@@ -37,19 +32,22 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
           <div className="text-xl mb-4">SG</div>
 
           <div className="flex flex-col gap-4">
-            <Link to="./">
+            <Link to="./"
+             onClick={() => {setCollapsed(false); }}>
               <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
                 <House className="w-5 h-5 " />
               </div>
             </Link>
 
-            <Link to="./jobs">
+            <Link to="./jobs"
+              onClick={() => {setCollapsed(false); }}>
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <Gift className="w-5 h-5 " />
               </div>
             </Link>
 
-            <Link to="./dashboard">
+            <Link to="./dashboard"
+             onClick={() => { setCollapsed(false); }}>
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <SquareMenu className="w-5 h-5 " />
               </div>
@@ -96,18 +94,23 @@ export default function Sidebar({ collapsed, toggleCollapsed }) {
           <nav className="space-y-1 px-3">
             {menuItems.map((item, index) => {
               const isActive = item.label === activeItem;
-              return ( 
-                <a
-                  href={`./${item.link}`}
+              return (
+                <Link
+                  to={`/${item.link}`}
                   key={index}
-                  onClick={() => setActiveItem(item.label)}
+                  onClick={() => {
+                    setActiveItem(item.label);
+                    toggleCollapsed(); // collapse sidebar on click
+                  }}
                   className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all duration-200 text-left ${
-                    isActive ? "bg-[#001f5d88] text-white" : "text-gray-400 hover:text-white"
+                    isActive
+                      ? "bg-[#001f5d88] text-white"
+                      : "text-gray-400 hover:text-white"
                   }`}
                 >
                   <span className="text-sm truncate">{item.label}</span>
                   <ChevronRight className="h-4 w-4 text-gray-400" />
-                </a>
+                </Link>
               );
             })}
           </nav>
