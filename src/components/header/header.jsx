@@ -11,9 +11,9 @@ export default function Header({ onToggleSidebar }) {
     <header className="ml-16 max-sm:ml-0 backdrop-blur-3xl border-b border-[#1C1D20] px-4 py-3 sm:px-6 sm:py-4 z-50 flex items-center justify-between">
       {/* LEFT SIDE (Hamburger + Brand maybe later) */}
       <div className="flex items-center space-x-3">
-        <button onClick={onToggleSidebar} className="p-2">
+        <span onClick={onToggleSidebar} className="p-2">
           <Hambuger />
-        </button>
+        </span>
       </div>
 
       {/* RIGHT SIDE CONTENT */}

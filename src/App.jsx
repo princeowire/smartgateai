@@ -9,6 +9,7 @@ import ResumeReview from './pages/resume/resumereview';
 import Home from './pages/Home/Home';
 import HireTalent from './pages/Hiretalent/hiretalent';
 import LoginPage from './pages/Login/login';
+import Signup from './pages/signup/signup';
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/ai-review" element={<ResumeReview />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path="/hire-talent" element={<HireTalent />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>

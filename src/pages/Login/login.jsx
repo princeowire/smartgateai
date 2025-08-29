@@ -20,7 +20,7 @@ export default function Login() {
         {/* Right Side Form */}
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-10 backdrop-blur-md bg-white/5">
           <h2 className="text-3xl font-bold text-yellow-400 mb-6">
-            {isEmployer ? "Employer Login" : "User Login"}
+            Login
           </h2>
 
           {/* Email Input */}
@@ -60,9 +60,9 @@ export default function Login() {
           </div>
 
           {/* Toggle Between User & Employer */}
-          <div onClick={() => setIsEmployer(!isEmployer)} className="w-[250px] bg-amber-300 h-10 rounded-full relative flex justify-center items-center p-1">
+          {/* <div onClick={() => setIsEmployer(!isEmployer)} className="w-[250px] bg-amber-300 h-10 rounded-full relative flex justify-center items-center p-1">
             <button
-              className={`text-yellow-400 p-2 hover:underline text-sm bg-gray-800 w-[125px] h-9 rounded-full absolute ${isEmployer ? "left-[2px]" : "right-[2px]"}`}
+              className={`text-yellow-400 p-2 hover:font-semibold text-sm bg-gray-800 w-[125px] h-9 rounded-full absolute ${isEmployer ? "left-[2px]" : "right-[2px]"}`}
             >
               {isEmployer ? "User Login" : "Employer Login"}
             </button>
@@ -71,7 +71,7 @@ export default function Login() {
               <p className="pl-10">user</p><p className="pr-10 ">Employer</p>
             </div>
 
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
