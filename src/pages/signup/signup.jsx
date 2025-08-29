@@ -4,6 +4,15 @@ import TalentForm from "../../components/signup-form/talentForm";
 
 export default function Signup() {
   const [isEmployer, setIsEmployer] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleToggle = () => {
+    setLoading(true); // start loading
+    setTimeout(() => {
+      setIsEmployer(!isEmployer);
+      setLoading(false); // stop loading after small delay
+    }, 600); // adjust duration
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center flex-col bg-gradient-to-br from-black via-gray-900 to-black text-white">
@@ -12,22 +21,37 @@ export default function Signup() {
         {/* Left Side Image */}
         <div className="hidden md:block w-1/2">
           <img
-            src="/7970.jpg" // Place your uploaded image in public folder
+            src="/7970.jpg"
             alt="Login Side"
             className="w-full h-full object-cover"
           />
         </div>
 
-
         {/* Right Side Form */}
-
-        {isEmployer ? <EmployersForm employerSave={!isEmployer} setemployerSave={setIsEmployer} /> : <TalentForm employerSave={!isEmployer} setemployerSave={setIsEmployer} />}
-
+        {loading ? (
+          <div className="flex items-center justify-center w-1/2 min-h-[450px] bg-gray-900">
+            <div className="w-10 h-10 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        ) : (
+          <>
+            {isEmployer ? (
+              <EmployersForm
+                employerSave={!isEmployer}
+                setemployerSave={setIsEmployer}
+              />
+            ) : (
+              <TalentForm
+                employerSave={!isEmployer}
+                setemployerSave={setIsEmployer}
+              />
+            )}
+          </>
+        )}
       </div>
 
       {/* Toggle Between User & Employer */}
       <div
-        onClick={() => setIsEmployer(!isEmployer)}
+        onClick={handleToggle}
         className="mt-8 w-[250px] h-10 bg-amber-300 rounded-full relative flex items-center cursor-pointer select-none p-1"
       >
         {/* Sliding knob */}
@@ -43,11 +67,10 @@ export default function Signup() {
 
         {/* Track labels */}
         <div className="flex justify-between w-full px-4 text-[#0b0d13] font-semibold text-sm pointer-events-none">
-          <span>Employer</span>
-          <span>User</span>
+          <span className="ml-6">Employer</span>
+          <span className="mr-6">User</span>
         </div>
       </div>
-
     </div>
   );
 }
