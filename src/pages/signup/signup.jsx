@@ -11,7 +11,7 @@ export default function Signup() {
     setTimeout(() => {
       setIsEmployer(!isEmployer);
       setLoading(false); // stop loading after small delay
-    }, 600); // adjust duration
+    }, 300); // adjust duration
   };
 
   return (
