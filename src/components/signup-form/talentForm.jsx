@@ -2,22 +2,52 @@ import React, { useState } from "react";
 import { Mail, Lock, User2, EyeClosed, Eye } from "lucide-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { auth } from "../../lib/firebase"; // ✅ your firebase.js
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const TalentForm = ({ employerSave, setemployerSave }) => {
   const [seePassword, setSeepassword] = useState(false);
+  const [firebaseError, setFirebaseError] = useState(""); // show signup errors
+  const navigate = useNavigate();
 
   // ✅ Validation Schema
   const validationSchema = Yup.object({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
-    password: Yup.string().min(6, "Password must be at least 6 characters").required("Password is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
   });
 
   // ✅ Handle Submit
-  const handleSubmit = (values) => {
-    console.log("Form values:", values);
-    // you can call setemployerSave(values) if you want to save
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setFirebaseError("");
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+
+      // Get Firebase token
+      const token = await userCredential.user.getIdToken();
+      localStorage.setItem("authToken", token);
+
+      // Optional: save extra info (firstName, lastName) to your DB if needed
+      if (setemployerSave) {
+        setemployerSave(values);
+      }
+
+      // Redirect after signup
+      navigate("/");
+    } catch (err) {
+      setFirebaseError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -26,7 +56,7 @@ const TalentForm = ({ employerSave, setemployerSave }) => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {() => (
+      {({ isSubmitting }) => (
         <Form className="w-full md:w-1/2 flex flex-col items-center justify-center p-10 backdrop-blur-md bg-white/5">
           <h2 className="text-3xl font-bold text-yellow-400 mb-6">User Sign up</h2>
 
@@ -92,10 +122,14 @@ const TalentForm = ({ employerSave, setemployerSave }) => {
           {/* Submit Button */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="bg-yellow-400 text-black font-semibold rounded-full w-full py-3 hover:bg-yellow-300 transition"
           >
-            Sign up
+            {isSubmitting ? "Signing up..." : "Sign up"}
           </button>
+
+          {/* Firebase Error */}
+          {firebaseError && <p className="mt-3 text-red-500">{firebaseError}</p>}
 
           {/* Remember Me + Forgot Password */}
           <div className="flex justify-between items-center w-full text-sm text-gray-400 mt-3">

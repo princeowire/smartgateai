@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -8,11 +8,15 @@ import {
   House,
   User,
   LucideSettings,
+  LogOut,
 } from "lucide-react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../lib/firebase"; // adjust path to your firebase.js
 import logo from "/assets/smartgatelogo.png";
 
 export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
   const [activeItem, setActiveItem] = useState("Dashboard");
+  const navigate = useNavigate();
 
   const menuItems = [
     { label: "Dashboard", link: "dashboard" },
@@ -24,6 +28,17 @@ export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
     { label: "Profile", link: "profile" },
   ];
 
+  // ✅ Logout function
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User logged out");
+      navigate("/login"); // redirect to login
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
+  };
+
   return (
     <div className="flex h-screen fixed top-0 left-0 z-50">
       {/* Fixed Vertical Icon Bar */}
@@ -32,22 +47,19 @@ export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
           <div className="text-xl mb-4">SG</div>
 
           <div className="flex flex-col gap-4">
-            <Link to="./"
-             onClick={() => {setCollapsed(false); }}>
+            <Link to="./" onClick={() => setCollapsed(false)}>
               <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
                 <House className="w-5 h-5 " />
               </div>
             </Link>
 
-            <Link to="./jobs"
-              onClick={() => {setCollapsed(false); }}>
+            <Link to="./jobs" onClick={() => setCollapsed(false)}>
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <Gift className="w-5 h-5 " />
               </div>
             </Link>
 
-            <Link to="./dashboard"
-             onClick={() => { setCollapsed(false); }}>
+            <Link to="./dashboard" onClick={() => setCollapsed(false)}>
               <div className="cursor-pointer hover:text-white p-4 rounded-2xl">
                 <SquareMenu className="w-5 h-5 " />
               </div>
@@ -63,6 +75,14 @@ export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
 
           <div className="cursor-pointer text-gray-400 hover:text-white p-4 rounded-2xl">
             <LucideSettings />
+          </div>
+
+          {/* ✅ Logout Button */}
+          <div
+            onClick={handleLogout}
+            className="cursor-pointer text-gray-400 hover:text-white p-4 rounded-2xl"
+          >
+            <LogOut />
           </div>
         </div>
         <div />
