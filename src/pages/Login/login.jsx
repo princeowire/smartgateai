@@ -1,40 +1,45 @@
-import { useState } from "react";
-import { Mail, Lock } from "lucide-react";
-import { auth } from "../../lib/firebase"; 
+import { Mail, Lock, EyeClosed, Eye } from "lucide-react";
+import { auth } from "../../lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
-  const [firebaseError, setFirebaseError] = useState(""); // ✅ fix
+  const [seePassword, setSeePassword] = useState(false);
+  
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // ✅ Yup validation schema
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
 
-    // Basic validation
-    const newErrors = {};
-    if (!email) newErrors.email = "Email is required";
-    if (!password) newErrors.password = "Password is required";
-    setErrors(newErrors);
-
-    if (Object.keys(newErrors).length > 0) return; // stop if validation fails
-
+  // ✅ Handle login
+  const handleLogin = async (values, { setSubmitting, setFieldError }) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
 
-      // ✅ Get ID token from Firebase user
+      // Get token
       const token = await userCredential.user.getIdToken();
-
-      // ✅ Save to localStorage
       localStorage.setItem("authToken", token);
 
-      // redirect to home
       navigate("/");
     } catch (err) {
-      setFirebaseError(err.message); // show firebase error
+      // Show Firebase error under password field
+      setFieldError("password", err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -54,54 +59,64 @@ export default function Login() {
         <div className="w-full md:w-1/2 flex flex-col items-center justify-center p-10 backdrop-blur-md bg-white/5">
           <h2 className="text-3xl font-bold text-yellow-400 mb-6">Login</h2>
 
-          <form onSubmit={handleLogin} className="w-full">
-            {/* Email Input */}
-            <div className="mb-6">
-              <div className="flex items-center bg-white/10 rounded-full px-4 py-3 w-full">
-                <Mail className="text-yellow-400 mr-3" />
-                <input
-                  type="email"
-                  placeholder="Email ID"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-transparent w-full outline-none text-white placeholder-gray-400"
-                />
-              </div>
-              {errors.email && (
-                <p className="mt-1 text-red-500 text-sm pl-2">{errors.email}</p>
-              )}
-            </div>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validationSchema={validationSchema}
+            onSubmit={handleLogin}
+          >
+            {({ isSubmitting }) => (
+              <Form className="w-full">
+                {/* Email Input */}
+                <div className="mb-6">
+                  <div className="flex items-center bg-white/10 rounded-full px-4 py-3 w-full">
+                    <Mail className="text-yellow-400 mr-3" />
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="Email ID"
+                      className="bg-transparent w-full outline-none text-white placeholder-gray-400"
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="email"
+                    component="p"
+                    className="mt-1 text-red-500 text-sm pl-2"
+                  />
+                </div>
 
-            {/* Password Input */}
-            <div className="mb-6">
-              <div className="flex items-center bg-white/10 rounded-full px-4 py-3 w-full">
-                <Lock className="text-yellow-400 mr-3" />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="bg-transparent w-full outline-none text-white placeholder-gray-400"
-                />
-              </div>
-              {errors.password && (
-                <p className="mt-1 text-red-500 text-sm pl-2">{errors.password}</p>
-              )}
-            </div>
+                {/* Password Input */}
+                <div className="mb-6">
+                  <div className="flex items-center bg-white/10 rounded-full px-4 py-3 w-full">
+                    <Lock className="text-yellow-400 mr-3" />
+                    <Field
+                      type={seePassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Password"
+                      className="bg-transparent w-full outline-none text-white placeholder-gray-400"
+                    />
+                    <div onClick={() => setSeePassword(!seePassword)} className="cursor-pointer ml-2">
+                      {seePassword ? <Eye className="text-yellow-400" /> : <EyeClosed className="text-yellow-400" />}
+                    </div>
+                  </div>
+                            
+                  <ErrorMessage
+                    name="password"
+                    component="p"
+                    className="mt-1 text-red-500 text-sm pl-2"
+                  />
+                </div>
 
-            {/* Sign In Button */}
-            <button
-              type="submit"
-              className="bg-yellow-400 text-black font-semibold rounded-full w-full py-3 hover:bg-yellow-300 transition"
-            >
-              Sign In
-            </button>
-
-            {/* Firebase Error */}
-            {firebaseError && (
-              <p className="mt-3 text-red-500 text-center">{firebaseError}</p>
+                {/* Sign In Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-yellow-400 text-black font-semibold rounded-full w-full py-3 hover:bg-yellow-300 transition disabled:opacity-50"
+                >
+                  {isSubmitting ? "Signing In..." : "Sign In"}
+                </button>
+              </Form>
             )}
-          </form>
+          </Formik>
 
           {/* Remember Me + Forgot Password */}
           <div className="flex justify-between items-center w-full text-sm text-gray-400 mt-3">
