@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import WelcomePopup from "../../components/welcomepopup/WelcomePopup"// ✅ import popup
 
 export default function Login() {
   const [seePassword, setSeePassword] = useState(false);
-  
+  const [showWelcome, setShowWelcome] = useState(false); // ✅ popup state
   const navigate = useNavigate();
 
   // ✅ Yup validation schema
@@ -30,18 +31,20 @@ export default function Login() {
         values.password
       );
 
-      // Get token
+      // Save token
       const token = await userCredential.user.getIdToken();
       localStorage.setItem("authToken", token);
 
-      navigate("/");
+      // ✅ Always show popup after login
+      setShowWelcome(true);
+      
     } catch (err) {
-      // Show Firebase error under password field
       setFieldError("password", err.message);
     } finally {
       setSubmitting(false);
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black text-white">
@@ -94,11 +97,17 @@ export default function Login() {
                       placeholder="Password"
                       className="bg-transparent w-full outline-none text-white placeholder-gray-400"
                     />
-                    <div onClick={() => setSeePassword(!seePassword)} className="cursor-pointer ml-2">
-                      {seePassword ? <Eye className="text-yellow-400" /> : <EyeClosed className="text-yellow-400" />}
+                    <div
+                      onClick={() => setSeePassword(!seePassword)}
+                      className="cursor-pointer ml-2"
+                    >
+                      {seePassword ? (
+                        <Eye className="text-yellow-400" />
+                      ) : (
+                        <EyeClosed className="text-yellow-400" />
+                      )}
                     </div>
                   </div>
-                            
                   <ErrorMessage
                     name="password"
                     component="p"
@@ -130,6 +139,16 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+      {/* ✅ Show Welcome Popup */}
+      {showWelcome && (
+        <WelcomePopup
+          onClose={() => {
+            setShowWelcome(false);
+            navigate("/"); // redirect after closing popup
+          }}
+        />
+      )}
     </div>
   );
 }
