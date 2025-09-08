@@ -11,6 +11,7 @@ import HireTalent from "./pages/Hiretalent/hiretalent";
 import LoginPage from "./pages/Login/login";
 import Signup from "./pages/signup/signup";
 import ProtectedRoute from "../src/lib/ProtectedRoute"; // 👈 import it
+import ChatBot  from "./pages/Chatbot/ChatBot";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -48,11 +49,19 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/jobs"
+                    <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
-                <Jobs />
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/chatbot"
+            element={
+              <ProtectedRoute>
+                <ChatBot />
               </ProtectedRoute>
             }
           />
