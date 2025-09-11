@@ -25,6 +25,7 @@ function App() {
 
   const location = useLocation();
   const hideLayout = ["/login", "/signup", "/"].includes(location.pathname);
+  const hideFloatBot = ["/login", "/signup", "/"].includes(location.pathname);
 
   return (
     <>
@@ -38,7 +39,7 @@ function App() {
 
       {!hideLayout && <Header onToggleSidebar={toggleSidebar} />}
 
-      <FloatBot />
+      {!hideLayout && <FloatBot />}
     
       <div className={`${hideLayout ? "ml-0" : "ml-16 max-sm:ml-0"}`}>
         <Routes>

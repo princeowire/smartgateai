@@ -98,9 +98,11 @@ export default function LandingPage() {
             </button>
           </Link> 
 
-          <button className="px-8 py-4 border border-gray-500 hover:bg-gray-800 transition rounded-2xl text-lg">
-            Employer Sign Up
-          </button>
+          <Link to="/signup">
+            <button className="px-8 py-4 border border-gray-500 hover:bg-gray-800 transition rounded-2xl text-lg">
+              Employer Sign Up
+            </button>
+          </Link>
         </motion.div>
       </section>
 
