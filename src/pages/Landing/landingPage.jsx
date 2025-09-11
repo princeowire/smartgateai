@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
   return (
@@ -91,11 +92,14 @@ export default function LandingPage() {
           viewport={{ once: true }}
           className="mt-8 flex gap-6 justify-center flex-wrap"
         >
-          <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-2xl text-lg">
-            Talent Login
-          </button>
+          <Link to="/signup">
+            <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 transition rounded-2xl text-lg">
+              Talent Sign Up
+            </button>
+          </Link> 
+
           <button className="px-8 py-4 border border-gray-500 hover:bg-gray-800 transition rounded-2xl text-lg">
-            Employer Login
+            Employer Sign Up
           </button>
         </motion.div>
       </section>

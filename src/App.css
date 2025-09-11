@@ -47,3 +47,14 @@ body {
 .custom-checkbox input:checked+.checkmark::after {
   display: block;
 }
+
+/* global CSS */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}

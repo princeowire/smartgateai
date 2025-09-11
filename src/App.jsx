@@ -14,6 +14,7 @@ import ProtectedRoute from "../src/lib/ProtectedRoute"; // 👈 import it
 import ChatBot  from "./pages/Chatbot/ChatBot";
 import landingPage from "./pages/Landing/landingPage"
 import LandingPage from "./pages/Landing/landingPage";
+import FloatBot from "./components/chatbot-main/floatBot";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -34,11 +35,16 @@ function App() {
           setCollapsed={setSidebarOpen}
         />
       )}
+
       {!hideLayout && <Header onToggleSidebar={toggleSidebar} />}
+
+      <FloatBot />
+    
       <div className={`${hideLayout ? "ml-0" : "ml-16 max-sm:ml-0"}`}>
         <Routes>
           {/* 🔓 Public Routes */}
           <Route path="/" element={<LandingPage />} />
+          <Route path="/onboarding" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Signup />} />
 
