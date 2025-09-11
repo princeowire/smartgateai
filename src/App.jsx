@@ -12,6 +12,8 @@ import LoginPage from "./pages/Login/login";
 import Signup from "./pages/signup/signup";
 import ProtectedRoute from "../src/lib/ProtectedRoute"; // 👈 import it
 import ChatBot  from "./pages/Chatbot/ChatBot";
+import landingPage from "./pages/Landing/landingPage"
+import LandingPage from "./pages/Landing/landingPage";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -21,7 +23,7 @@ function App() {
   };
 
   const location = useLocation();
-  const hideLayout = ["/login", "/signup"].includes(location.pathname);
+  const hideLayout = ["/login", "/signup", "/"].includes(location.pathname);
 
   return (
     <>
@@ -36,7 +38,7 @@ function App() {
       <div className={`${hideLayout ? "ml-0" : "ml-16 max-sm:ml-0"}`}>
         <Routes>
           {/* 🔓 Public Routes */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Signup />} />
 
@@ -46,6 +48,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+         <Route
+            path="/Home"
+            element={
+              <ProtectedRoute>
+                <Home />
               </ProtectedRoute>
             }
           />
