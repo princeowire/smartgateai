@@ -9,7 +9,7 @@ const FloatBot = () => {
     <div className="fixed bottom-4 right-4 flex flex-col items-end">
       {/* BotChat popup */}
       {open && (
-        <div className="mb-3 w-80 h-96 text-black shadow-xl overflow-hidden">
+        <div className="mb-3 w-80 h-full text-black shadow-xl overflow-hidden">
           <div className="flex justify-between items-center p-3 border-b border-gray-200 bg-amber-400">
             <h3 className="font-semibold text-sm">SmartGate AI Bot</h3>
             <button onClick={() => setOpen(false)}>

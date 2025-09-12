@@ -25,7 +25,7 @@ function App() {
 
   const location = useLocation();
   const hideLayout = ["/login", "/signup", "/"].includes(location.pathname);
-  const hideFloatBot = ["/login", "/signup", "/"].includes(location.pathname);
+  // const hideFloatBot = ["/login", "/signup", "/"].includes(location.pathname);
 
   return (
     <>
