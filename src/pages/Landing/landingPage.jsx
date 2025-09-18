@@ -32,12 +32,17 @@ export default function LandingPage() {
           transition={{ delay: 0.6, duration: 1 }}
           className="mt-10 flex gap-6 flex-wrap justify-center"
         >
-          <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-2xl text-lg">
-            Talent Login
-          </button>
-          <button className="px-6 py-3 border border-gray-500 hover:bg-gray-800 transition rounded-2xl text-lg">
-            Employer Login
-          </button>
+          <Link to="/login">
+            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 transition rounded-2xl text-lg">
+              Talent Login
+            </button>
+          </Link>
+
+          <Link to="/login">
+            <button className="px-6 py-3 border border-gray-500 hover:bg-gray-800 transition rounded-2xl text-lg">
+              Employer Login
+            </button>
+          </Link>
         </motion.div>
       </section>
 
