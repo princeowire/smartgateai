@@ -47,7 +47,7 @@ export default function Sidebar({ collapsed, toggleCollapsed, setCollapsed }) {
           <div className="text-xl mb-4">SG</div>
 
           <div className="flex flex-col gap-4">
-            <Link to="./home" onClick={() => setCollapsed(false)}>
+            <Link to="./" onClick={() => setCollapsed(false)}>
               <div className="cursor-pointer hover:text-white p-4 bg-[#001f5d88] rounded-2xl">
                 <House className="w-5 h-5 " />
               </div>

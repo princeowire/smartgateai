@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import logo from "../../../public/assets/smartgatelogo.png"
 
 export default function LandingPage() {
   return (
@@ -11,9 +12,9 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight"
+          className="text-5xl md:text-7xl font-bold tracking-tight w-3xl"
         >
-          SmartGate AI
+          <img src={logo} alt="" />
         </motion.h1>
 
         <motion.p

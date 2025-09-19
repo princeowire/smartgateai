@@ -14,6 +14,7 @@ import ProtectedRoute from "../src/lib/ProtectedRoute";
 import ChatBot from "./pages/Chatbot/ChatBot";
 import LandingPage from "./pages/Landing/landingPage";
 import FloatBot from "./components/chatbot-main/floatBot";
+import EmployerDashboard from "./pages/Dashboard/emplyersdash";
 
 import { auth } from "./lib/firebase"; 
 import { useAuthState } from "react-firebase-hooks/auth"; // ✅
@@ -72,6 +73,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/employer-dashboard"
+            element={
+              <ProtectedRoute>
+                <EmployerDashboard />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/jobs"
             element={
