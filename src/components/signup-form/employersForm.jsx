@@ -48,7 +48,7 @@ const EmployersForm = () => {
 
       alert("Employer account created ✅");
       resetForm();
-      navigate("/home"); // redirect after signup
+      navigate("/"); // redirect after signup
     } catch (error) {
       console.error("Signup error:", error);
       alert(error.message);

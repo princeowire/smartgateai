@@ -145,7 +145,7 @@ export default function Login() {
         <WelcomePopup
           onClose={() => {
             setShowWelcome(false);
-            navigate("/home"); // redirect after closing popup
+            navigate("/"); // redirect after closing popup
           }}
         />
       )}

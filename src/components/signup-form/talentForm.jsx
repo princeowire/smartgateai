@@ -42,7 +42,7 @@ const TalentForm = ({ employerSave, setemployerSave }) => {
       }
 
       // Redirect after signup
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setFirebaseError(err.message);
     } finally {
